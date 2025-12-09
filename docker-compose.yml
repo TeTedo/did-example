@@ -1,0 +1,37 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: ethereum-did-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: ethereum_did
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Optional: IPFS node for storing DID documents
+  ipfs:
+    image: ipfs/kubo:latest
+    container_name: ethereum-did-ipfs
+    restart: unless-stopped
+    ports:
+      - "4001:4001" # P2P
+      - "5001:5001" # API
+      - "8080:8080" # Gateway
+    volumes:
+      - ./data/ipfs:/data/ipfs
+    profiles:
+      - ipfs
+
+volumes:
+  mysql_data:
+  ipfs_data:
