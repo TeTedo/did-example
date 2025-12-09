@@ -1,0 +1,24 @@
+{
+  "name": "@ethereum-did/examples",
+  "version": "1.0.0",
+  "private": true,
+  "description": "DID/VC 예제 모음",
+  "type": "module",
+  "scripts": {
+    "01": "npx tsx 01-basic-did",
+    "02": "npx tsx 02-document-signing",
+    "03": "npx tsx 03-credential-issuance",
+    "04": "npx tsx 04-login-authentication",
+    "05": "npx tsx 05-delegation",
+    "06": "npx tsx 06-revocation"
+  },
+  "dependencies": {
+    "ethers": "^6.13.2",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5",
+    "tsx": "^4.19.0",
+    "@types/node": "^20.14.2"
+  }
+}
